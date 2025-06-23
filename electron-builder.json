@@ -1,0 +1,55 @@
+{
+  "appId": "com.adn.audiobroadcaster",
+  "productName": "ADN Audio Broadcaster",
+  "files": [
+    "dist/**/*",
+    "node_modules/**/*",
+    "package.json"
+  ],
+  "directories": {
+    "buildResources": "assets",
+    "output": "release"
+  },
+  "extraResources": [
+    {
+      "from": "assets/ffmpeg",
+      "to": "ffmpeg",
+      "filter": ["**/*"]
+    }
+  ],
+  "win": {
+    "target": ["nsis"],
+    "icon": "assets/icons/win/icon.ico"
+  },
+  "mac": {
+    "target": ["dmg"],
+    "icon": "assets/icons/mac/icon.icns",
+    "category": "public.app-category.utilities"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "icon": "assets/icons/linux",
+    "category": "AudioVideo"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+  "publish": null
+}

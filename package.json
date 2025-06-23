@@ -1,0 +1,88 @@
+{
+  "name": "adn-audio-broadcaster",
+  "version": "1.0.0",
+  "description": "Desktop-based admin tool for live audio broadcasting",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npx webpack serve --port 9000\" \"npx tsc -p . -w\" \"wait-on http://localhost:9000/ && electron .\"",
+    "build": "npx webpack --config webpack.config.js && npx tsc -p .",
+    "package": "electron-builder build --publish never",
+    "package:win": "electron-builder build --win --publish never",
+    "package:mac": "electron-builder build --mac --publish never",
+    "package:linux": "electron-builder build --linux --publish never",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "audio",
+    "streaming",
+    "broadcaster",
+    "electron",
+    "react"
+  ],
+  "author": {
+    "name": "ADN Team",
+    "email": "contact@adn.org"
+  },
+  "license": "MIT",
+  "homepage": "https://audio.adn.org",
+  "build": {
+    "appId": "com.adn.audiobroadcaster",
+    "productName": "ADN Audio Broadcaster",
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    },
+    "extraResources": [
+      {
+        "from": "assets/ffmpeg",
+        "to": "ffmpeg",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": ["nsis"],
+      "icon": "assets/icons/win/icon.ico"
+    },
+    "mac": {
+      "target": ["dmg"],
+      "icon": "assets/icons/mac/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "assets/icons/linux",
+      "category": "AudioVideo",
+      "maintainer": "contact@adn.org"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.0",
+    "concurrently": "^9.1.2",
+    "css-loader": "^7.1.2",
+    "electron": "^36.4.0",
+    "electron-builder": "^24.9.0",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.0.2",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
+
+
