@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dev": "concurrently \"npx webpack serve --port 9000\" \"npx tsc -p . -w\" \"wait-on http://localhost:9000/ && electron .\"",
-    "build": "npx webpack --config webpack.config.js && npx tsc -p .",
+    "build": "npx webpack --config webpack.config.js",
     "package": "electron-builder build --publish never",
     "package:win": "electron-builder build --win --publish never",
     "package:mac": "electron-builder build --mac --publish never",
